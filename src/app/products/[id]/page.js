@@ -15,23 +15,14 @@ export default function ProductDetail({ params }) {
 
     if (!product) {
         return (
-            <div className="pageContainer" style={{ textAlign: 'center', paddingTop: '8rem' }}>
-                <p style={{ fontSize: '3rem', marginBottom: '1rem' }}>😕</p>
-                <h2>Product not found</h2>
-                <p style={{ color: '#636e72', marginBottom: '1.5rem' }}>
-                    The product you're looking for doesn't exist.
+            <div className="pageContainer" style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>😕</div>
+                <h2 className="pageTitle">Product Not Found</h2>
+                <p className="pageSub">
+                    The gift you're looking for might have been moved or is currently unavailable.
                 </p>
-                <Link
-                    href="/products"
-                    style={{
-                        padding: '0.75rem 2rem',
-                        background: 'linear-gradient(135deg, #ff6b81, #ff9ff3)',
-                        color: 'white',
-                        borderRadius: '50px',
-                        fontWeight: 700,
-                    }}
-                >
-                    Browse Products
+                <Link href="/products" className="heroBtn" style={{ display: 'inline-block', marginTop: '1rem' }}>
+                    ✨ Browse All Products
                 </Link>
             </div>
         );
@@ -40,61 +31,65 @@ export default function ProductDetail({ params }) {
     const handleAdd = () => {
         addToCart(product);
         setAdded(true);
-        setTimeout(() => setAdded(false), 1500);
+        setTimeout(() => setAdded(false), 2000);
     };
 
     const waMessage = encodeURIComponent(
-        `Hi GiftLingo! I want to order: ${product.name} (₹${product.price})`
+        `Hi GiftLingo! I'm interested in the "${product.name}" (₹${product.price}). Is it available?`
     );
 
     const relatedProducts = products
         .filter((p) => p.category === product.category && p.id !== product.id)
-        .slice(0, 3);
+        .slice(0, 4);
 
     return (
-        <div className="detailContainer">
+        <div className="pageContainer">
+            <div className="detailBreadcrumb">
+                <Link href="/">Home</Link>
+                <span>/</span>
+                <Link href="/products">Products</Link>
+                <span>/</span>
+                <span className="current">{product.name}</span>
+            </div>
+
             <div className="detailGrid">
                 <div className="detailImageWrap">
+                    <div className="detailBadge">Premium Gift</div>
                     <Image
                         src={product.image}
                         alt={product.name}
                         width={600}
                         height={600}
                         priority
+                        className="mainProductImg"
                     />
                 </div>
 
                 <div className="detailInfo">
-                    <Link
-                        href="/products"
-                        style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '0.35rem',
-                            marginBottom: '1rem',
-                            color: '#636e72',
-                            fontSize: '0.9rem',
-                        }}
-                    >
-                        ← Back to Products
-                    </Link>
-                    <h1>{product.name}</h1>
-                    <p className="detailPrice">₹{product.price}</p>
+                    <span className="detailCategory">{product.category}</span>
+                    <h1 className="detailTitle">{product.name}</h1>
+                    
+                    <div className="detailMeta">
+                        <span className="detailPrice">₹{product.price}</span>
+                        <div className="stockBadge">
+                            <span className="dot"></span> In Stock
+                        </div>
+                    </div>
+
                     <p className="detailDesc">{product.description}</p>
+
+                    <div className="detailFeatures">
+                        <div className="featureItem">✨ Premium Quality</div>
+                        <div className="featureItem">🚚 Fast Delivery</div>
+                        <div className="featureItem">🎁 Gift Wrap Available</div>
+                    </div>
 
                     <div className="detailActions">
                         <button
-                            className="detailAddBtn"
+                            className={`detailAddBtn ${added ? 'added' : ''}`}
                             onClick={handleAdd}
-                            style={
-                                added
-                                    ? {
-                                        background: 'linear-gradient(135deg, #00b894, #55efc4)',
-                                    }
-                                    : {}
-                            }
                         >
-                            {added ? '✓ Added to Cart!' : '🛒 Add to Cart'}
+                            {added ? '✓ Item Added!' : '🛒 Add to Cart'}
                         </button>
                         <a
                             href={`https://wa.me/919876543210?text=${waMessage}`}
@@ -105,13 +100,19 @@ export default function ProductDetail({ params }) {
                             💬 Buy via WhatsApp
                         </a>
                     </div>
+
+                    <div className="trustFooter">
+                        🔒 Safe & Secure Checkout
+                    </div>
                 </div>
             </div>
 
             {relatedProducts.length > 0 && (
-                <div style={{ marginTop: '4rem' }}>
-                    <h2 className="sectionTitle">You May Also Like</h2>
-                    <p className="sectionSub">More from the same category</p>
+                <div className="relatedSection">
+                    <div className="sectionHeader" style={{ textAlign: 'left', marginBottom: '3rem' }}>
+                        <h2 className="sectionTitle">You May Also Like</h2>
+                        <p className="sectionSub">More wonderful gifts from {product.category}</p>
+                    </div>
                     <div className="productGrid">
                         {relatedProducts.map((p) => (
                             <ProductCard key={p.id} product={p} />

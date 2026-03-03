@@ -931,6 +931,241 @@ button {
   }
 }
 
+/* ===== PRODUCT DETAILS ===== */
+
+.detailBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.detailBreadcrumb a:hover {
+  color: var(--primary);
+}
+
+.detailBreadcrumb .current {
+  color: var(--text-heading);
+  font-weight: 700;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: start;
+  margin-bottom: 8rem;
+}
+
+.detailImageWrap {
+  background: white;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.detailBadge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: var(--btn-gradient);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(255, 77, 141, 0.3);
+  z-index: 2;
+}
+
+.mainProductImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.6s ease;
+}
+
+.detailImageWrap:hover .mainProductImg {
+  transform: scale(1.05);
+}
+
+.detailCategory {
+  display: inline-block;
+  color: var(--secondary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.detailTitle {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.detailMeta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.detailPrice {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.stockBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #DCFCE7;
+  color: #166534;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.stockBadge .dot {
+  width: 8px;
+  height: 8px;
+  background: #22C55E;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #22C55E;
+}
+
+.detailDesc {
+  font-size: 1.15rem;
+  color: var(--text-body);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.detailFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.featureItem {
+  background: var(--bg-pink);
+  color: var(--primary);
+  padding: 0.6rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.detailActions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.detailAddBtn,
+.detailWaBtn {
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.detailAddBtn {
+  background: var(--text-heading);
+  color: white;
+  border: none;
+}
+
+.detailAddBtn:hover {
+  transform: translateY(-4px);
+  background: var(--primary);
+  box-shadow: 0 10px 25px rgba(255, 77, 141, 0.25);
+}
+
+.detailAddBtn.added {
+  background: #10B981 !important;
+  pointer-events: none;
+}
+
+.detailWaBtn {
+  background: white;
+  color: #25D366;
+  border: 4px solid #25D366;
+}
+
+.detailWaBtn:hover {
+  background: #25D366;
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+}
+
+.trustFooter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  justify-content: center;
+}
+
+.relatedSection {
+  padding-top: 5rem;
+  border-top: 1px solid #F3F4F6;
+}
+
+@media (max-width: 1024px) {
+  .detailGrid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  
+  .detailTitle {
+    font-size: 2.8rem;
+  }
+  
+  .detailImageWrap {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .detailTitle {
+    font-size: 2.2rem;
+  }
+  
+  .detailMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
