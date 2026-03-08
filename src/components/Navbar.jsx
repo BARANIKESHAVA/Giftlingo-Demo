@@ -42,9 +42,9 @@ export default function Navbar() {
                 </button>
 
                 <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>
-                    <li><Link href="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-                    <li><Link href="/products" onClick={() => setMenuOpen(false)}>Products</Link></li>
-                    <li><Link href="/products" onClick={() => setMenuOpen(false)}>Categories</Link></li>
+                    <li><Link href="/" onClick={() => setMenuOpen(false)}>🏠 Home</Link></li>
+                    <li><Link href="/products" onClick={() => setMenuOpen(false)}>🎁 Products</Link></li>
+                    <li><Link href="/products" onClick={() => setMenuOpen(false)}>🏷️ Categories</Link></li>
                     <li>
                         <Link href="/cart" className={styles.cartLink} onClick={() => setMenuOpen(false)}>
                             🛒 Cart
@@ -53,7 +53,7 @@ export default function Navbar() {
                             )}
                         </Link>
                     </li>
-                    <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+                    <li><a href="#contact" onClick={() => setMenuOpen(false)}>📞 Contact</a></li>
                 </ul>
             </div>
         </nav>
